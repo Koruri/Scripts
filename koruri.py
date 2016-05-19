@@ -37,8 +37,7 @@ def main():
         op_path = "{0}/{1}".format(opensans_path, op)
         mp_path = "{0}/{1}".format(mplus_path, mp)
         ko_path = "{0}/Koruri-{1}.ttf".format(koruri_path, weight)
-        sf_path = "{0}/Koruri-{1}".format(sfd_path, weight)
-        generate_koruri(op_path, mp_path, ko_path, sf_path, weight, version)
+        generate_koruri(op_path, mp_path, ko_path, weight, version)
 
 def koruri_sfnt_names(weight, version):
     return (
@@ -68,7 +67,7 @@ def koruri_gasp():
         (65535, ('gridfit', 'antialias', 'symmetric-smoothing', 'gridfit+smoothing')),
     )
 
-def generate_koruri(op_path, mp_path, ko_path, sf_path, weight, version):
+def generate_koruri(op_path, mp_path, ko_path, weight, version):
     # M+ を開く
     font = fontforge.open(mp_path)
 
