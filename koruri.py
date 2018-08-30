@@ -43,17 +43,17 @@ def koruri_sfnt_names(weight, version):
     return (
         ('English (US)', 'Copyright',
          '''\
-         Koruri: Copylight (c) 2016 lindwurm.
+         Koruri: Copyright (c) 2013- lindwurm.
 
          Open Sans: Copyright (c) 2011 Google Corporation.
 
-	 M+ OUTLINE FONTS: Copyright (C) 2016 M+ FONTS PROJECT.'''),
+         M+ OUTLINE FONTS: Copyright (C) 2002- M+ FONTS PROJECT.'''),
         ('English (US)', 'Family', 'Koruri {0}'.format(weight)),
         ('English (US)', 'SubFamily', weight),
         ('English (US)', 'Fullname', 'Koruri-{0}'.format(weight)),
         ('English (US)', 'Version', version),
         ('English (US)', 'PostScriptName', 'Koruri-{0}'.format(weight)),
-        ('English (US)', 'Vendor URL', 'http://koruri.lindwurm.biz'),
+        ('English (US)', 'Vendor URL', 'https://koruri.github.io'),
         ('English (US)', 'Preferred Family', 'Koruri'),
         ('English (US)', 'Preferred Styles', weight),
         ('Japanese', 'Preferred Family', 'Koruri'),
