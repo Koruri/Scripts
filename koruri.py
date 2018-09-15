@@ -7,6 +7,9 @@ from datetime import date
 # Open Sans のあるディレクトリのパス
 opensans_path = "./opensans"
 
+# Fancy Colon のみである Roboto のあるディレクトリのパス
+roboto_path = "./roboto"
+
 # M+ のあるディレクトリのパス
 mplus_path = "./mplus"
 
@@ -15,14 +18,13 @@ mplus_path = "./mplus"
 koruri_path = "./koruri"
 
 # フォントリスト
-# Open Sans ファイル名, M+ ファイル名, Koruri ウェイト
-# Open Sans は Semibold と ExtraBold の表記ゆれに注意.
+# Open Sans ファイル名, Roboto ファイル名, M+ ファイル名, Koruri ウェイト
 font_list = [
-    ("OpenSans-Light.ttf", "mplus-1p-light.ttf", "Light"),
-    ("OpenSans-Regular.ttf", "mplus-1p-regular.ttf", "Regular"),
-    ("OpenSans-Semibold.ttf", "mplus-1p-medium.ttf", "Semibold"),
-    ("OpenSans-Bold.ttf", "mplus-1p-bold.ttf", "Bold"),
-    ("OpenSans-ExtraBold.ttf", "mplus-1p-heavy.ttf", "Extrabold"),
+    ("OpenSans-Light.ttf", "Roboto-Light.ttf", "mplus-1p-light.ttf", "Light"),
+    ("OpenSans-Regular.ttf", "Roboto-Regular.ttf", "mplus-1p-regular.ttf", "Regular"),
+    ("OpenSans-SemiBold.ttf", "Roboto-Medium.ttf", "mplus-1p-medium.ttf", "Semibold"),
+    ("OpenSans-Bold.ttf", "Roboto-Bold.ttf", "mplus-1p-bold.ttf", "Bold"),
+    ("OpenSans-ExtraBold.ttf", "Roboto-Black.ttf", "mplus-1p-heavy.ttf", "Extrabold"),
 ]
 
 def main():
@@ -33,11 +35,12 @@ def main():
     today = date.today()
     version = "Koruri-{0}".format(today.strftime("%Y%m%d"))
 
-    for (op, mp, weight) in font_list:
+    for (op, rb, mp, weight) in font_list:
         op_path = "{0}/{1}".format(opensans_path, op)
+        rb_path = "{0}/{1}".format(roboto_path, rb)
         mp_path = "{0}/{1}".format(mplus_path, mp)
         ko_path = "{0}/Koruri-{1}.ttf".format(koruri_path, weight)
-        generate_koruri(op_path, mp_path, ko_path, weight, version)
+        generate_koruri(op_path, rb_path, mp_path, ko_path, weight, version)
 
 def koruri_sfnt_names(weight, version):
     return (
@@ -46,7 +49,7 @@ def koruri_sfnt_names(weight, version):
          Koruri: Copyright (c) 2013- lindwurm.
 
          Open Sans: Copyright (c) 2011 Google Corporation.
-
+         Roboto: Copyright (c) 2012- Google.
          M+ OUTLINE FONTS: Copyright (C) 2002- M+ FONTS PROJECT.'''),
         ('English (US)', 'Family', 'Koruri {0}'.format(weight)),
         ('English (US)', 'SubFamily', weight),
@@ -67,7 +70,7 @@ def koruri_gasp():
         (65535, ('gridfit', 'antialias', 'symmetric-smoothing', 'gridfit+smoothing')),
     )
 
-def generate_koruri(op_path, mp_path, ko_path, weight, version):
+def generate_koruri(op_path, rb_path, mp_path, ko_path, weight, version):
     # M+ を開く
     font = fontforge.open(mp_path)
 
@@ -84,9 +87,13 @@ def generate_koruri(op_path, mp_path, ko_path, weight, version):
         if glyph.glyphname in font:
             font.selection.select(("more",), glyph.glyphname)
     font.clear()
-        
+
     # Open Sans をマージする
     font.mergeFonts(op_path)
+
+    # Fancy Colon のみの Roboto をマージする
+    rbfont = fontforge.open(rb_path)
+    font.mergeFonts(rb_path)
 
     # フォント情報の設定
     font.sfnt_names = koruri_sfnt_names(weight, version)
