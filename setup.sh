@@ -4,8 +4,8 @@ bldblu=${txtbld}$(tput setaf 4)
 
 mkdir -p koruri mplus opensans
 cd opensans
-wget https://www.fontsquirrel.com/fonts/download/open-sans
-unzip open-sans
+wget -o opensans.zip https://fonts.google.com/download?family=Open+Sans
+unzip opensans.zip
 cd ../
 
 echo "${bldblu}                        **                        "
