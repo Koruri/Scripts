@@ -67,7 +67,7 @@ def koruri_gasp():
     return (
         (8, ('antialias',)),
         (13, ('antialias', 'symmetric-smoothing')),
-        (65535, ('gridfit', 'antialias', 'symmetric-smoothing', 'gridfit+smoothing')),
+        (65535, ('antialias', 'symmetric-smoothing')),
     )
 
 def generate_koruri(op_path, rb_path, mp_path, ko_path, weight, version):
