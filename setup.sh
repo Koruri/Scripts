@@ -1,11 +1,16 @@
- !/bin/bash
+#!/bin/bash
 
 bldblu=${txtbld}$(tput setaf 4)
 
-mkdir -p koruri mplus opensans
+mkdir -p koruri mplus opensans roboto
 cd opensans
-wget -o opensans.zip https://fonts.google.com/download?family=Open+Sans
+wget https://fonts.google.com/download?family=Open+Sans -O opensans.zip
 unzip opensans.zip
+cd ../
+
+cd roboto
+wget https://fonts.google.com/download?family=Roboto -O roboto.zip
+unzip roboto.zip
 cd ../
 
 echo "${bldblu}                        **                        "
