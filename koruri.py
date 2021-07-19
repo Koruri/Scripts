@@ -7,7 +7,7 @@ from datetime import date
 # Open Sans のあるディレクトリのパス
 opensans_path = "./opensans"
 
-# Fancy Colon のみである Roboto のあるディレクトリのパス
+# Roboto のあるディレクトリのパス
 roboto_path = "./roboto"
 
 # M+ のあるディレクトリのパス
@@ -91,9 +91,20 @@ def generate_koruri(op_path, rb_path, mp_path, ko_path, weight, version):
     # Open Sans をマージする
     font.mergeFonts(op_path)
 
-    # Fancy Colon のみの Roboto をマージする
+    # Fancy Colon を Roboto からコピーする
     rbfont = fontforge.open(rb_path)
-    font.mergeFonts(rb_path)
+    
+    # Fancy Colon をコピー
+    rbfont.selection.select(0xee01)
+    rbfont.copy()
+    font.selection.select(0xee01)
+    font.paste()
+
+    # Fancy Colon を U+A789 にコピー
+    font.selection.select(0xee01)
+    font.copy()
+    font.selection.select(0xa789)
+    font.paste()
 
     # フォント情報の設定
     font.sfnt_names = koruri_sfnt_names(weight, version)
