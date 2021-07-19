@@ -1,32 +1,28 @@
 # Scripts
 
-[Koruri](http://koruri.lindwurm.biz) をビルドするためのスクリプトです。
+[Koruri](https://koruri.github.io/) をビルドするためのスクリプトです。
 
 ## 使い方
 
 ```
-git clone https://github.com/Koruri/Scripts make_koruri
+git clone https://github.com/Koruri/Scripts.git make_koruri
 ```
 
 ```
 cd make_koruri
 ```
 
-### `setup.sh` でできる
+Open Sans と Roboto は `setup.sh` の中でダウンロード、展開されます。
 
 ```
-mkdir opensans mplus roboto koruri
+./setup.sh
 ```
 
-```
-wget -O opensans.zip https://fonts.google.com/download?family=Open+Sans && unzip opensans.zip -d opensans
-```
+あとは
 
-### 手動
-
-* [ここ](https://osdn.jp/projects/mplus-fonts/releases/62344) から最新の M+ OUTLINE FONTS TESTFLIGHT をダウンロード
+* [ここ](https://osdn.jp/projects/mplus-fonts/releases/62344) から最新の `M+ OUTLINE FONTS TESTFLIGHT` をダウンロード
 * M+ 1p を `mplus` に展開
-* Roboto の `U+EE01` だけを取り出した版を用意する(WIP)
+* [FontForge](https://fontforge.org/) をインストールしておく
 
 ```
 fontforge -lang=py -script koruri.py
