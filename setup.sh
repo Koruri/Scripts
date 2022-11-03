@@ -2,7 +2,6 @@
 
 bldblu=${txtbld}$(tput setaf 4)
 
-mkdir -p koruri mplus opensans roboto
 cd opensans
 wget https://fonts.google.com/download?family=Open+Sans -O opensans.zip
 unzip opensans.zip
